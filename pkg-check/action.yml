@@ -89,14 +89,6 @@ runs:
        if [ "${{ runner.os }}" = Linux ]; then
          PKGTYPE=source;
        else
-         echo "Rscript is `which Rscript`"
-         echo "Figuring out pkgType"
-         Rscript -e '.Platform$pkgType'
-         echo "Tryuing contrib url without argument"
-         Rscript -e 'contrib.url(\"\")'
-         echo "Figuring out contrib url..."
-         Rscript -e 'cat(contrib.url("",.Platform$pkgType))'
-         echo "Setting BRPATH"
          BRPATH=$BLDIR/repo`Rscript -e 'cat(contrib.url("",.Platform$pkgType))'`
          echo Binary install - target repo is $BRPATH
          mkdir -p $BRPATH
