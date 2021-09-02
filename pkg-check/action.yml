@@ -93,6 +93,14 @@ runs:
           echo ""
           echo "Printing double empty string"
           echo """"
+          echo 0
+          which Rscript
+          echo $PATH
+          echo 1
+          Rscript -e '.Platform$pkgType'
+          echo 2
+          Rscript -e 'contrib.url("",.Platform$pkgType)'
+          echo 3
           echo "First figuring out"
           Rscript -e 'cat(contrib.url("",.Platform$pkgType))'
           echo "Figuring out BRPATH..."
