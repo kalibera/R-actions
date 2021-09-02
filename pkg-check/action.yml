@@ -102,7 +102,7 @@ runs:
         fi
         R_LIBS=$BLDIR/Rlib Rscript -e "\
           tools::write_PACKAGES('$SAFEDIR/repo/src/contrib',type='source'); \
-          chooseCRANmirror(graphics=FALSE, ind=0, local.only=TRUE); \
+          chooseCRANmirror(graphics=FALSE, ind=1, local.only=TRUE); \
           install.packages('$PACKAGE',,c('$REPOURL',getOption('repos')), type='$PKGTYPE', dependencies=TRUE) \
         "
         echo '::endgroup::'
