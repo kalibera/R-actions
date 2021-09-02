@@ -89,7 +89,8 @@ runs:
         if [ "${{ runner.os }}" = Linux ]; then
           PKGTYPE=source;
         else
-          BRPATH=$BLDIR/repo`Rscript -e "cat(contrib.url('',"'.Platform$pkgType))'`
+          # FIXME: why the double quotes need to be escaped?
+          BRPATH=$BLDIR/repo`Rscript -e 'cat(contrib.url(\"\",.Platform$pkgType))'`
           echo Binary install - target repo is $BRPATH
           mkdir -p $BRPATH
           echo '' > $BRPATH/PACKAGES
@@ -100,7 +101,11 @@ runs:
           fi
           PKGTYPE=both
         fi
-        R_LIBS=$BLDIR/Rlib Rscript -e "tools::write_PACKAGES('$SAFEDIR/repo/src/contrib',type='source'); install.packages('$PACKAGE',,c('$REPOURL','https://cloud.R-project.org'), type='$PKGTYPE', dependencies=TRUE)"
+        R_LIBS=$BLDIR/Rlib Rscript -e "
+          tools::write_PACKAGES('$SAFEDIR/repo/src/contrib',type='source')
+          chooseCRANmirror(graphics=FALSE, ind=0, local.only=TRUE)
+          install.packages('$PACKAGE',,c('$REPOURL',options("repos")), type='$PKGTYPE', dependencies=TRUE)
+        "
         echo '::endgroup::'
       shell: bash
 
