@@ -89,7 +89,12 @@ runs:
         if [ "${{ runner.os }}" = Linux ]; then
           PKGTYPE=source;
         else
+          echo "Printing empty string"
+          echo ""
+          echo "Printing double empty string"
+          echo """"
           echo "Figuring out BRPATH..."
+          
           BRPATH=$BLDIR/repo`Rscript -e 'cat(contrib.url("",.Platform$pkgType))'`
           echo  "BRPATH is $BRPATH"
           echo Binary install - target repo is $BRPATH
