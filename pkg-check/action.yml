@@ -93,6 +93,10 @@ runs:
           echo ""
           echo "Printing double empty string"
           echo """"
+          echo "Printing double empty string 2"
+          echo '""'
+          echo "Printing double empty string 3"
+          echo "''"
           echo 0
           which Rscript
           echo $PATH
