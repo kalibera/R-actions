@@ -98,6 +98,14 @@ runs:
           echo $PATH
           echo 1
           Rscript -e '.Platform$pkgType'
+          echo "pkgtype is $pkgType"
+          echo ".Platform pkgType is .Platform$pkgType"          
+          echo 1.1
+          Rscript -e "contrib.url('')"
+          echo 1.2
+          Rscript -e "contrib.url(\"\")"
+          echo 1.3
+          Rscript -e "contrib.url('',.Platform$pkgType)"
           echo 2
           Rscript -e 'contrib.url("",.Platform$pkgType)'
           echo 3
