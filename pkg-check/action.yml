@@ -124,6 +124,8 @@ runs:
                echo " --------------------------------- "
               fi
             done
+            echo "::error ::ERROR: package $PACKAGE check failed"
+            exit 1
         fi
         echo '::endgroup::'
       shell: bash
