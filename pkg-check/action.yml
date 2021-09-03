@@ -105,6 +105,7 @@ runs:
           chooseCRANmirror(graphics=FALSE, ind=1, local.only=TRUE); \
           install.packages('$PACKAGE',,c('$REPOURL',getOption('repos')), type='$PKGTYPE', dependencies=TRUE) \
         "
+        #FIXME: install.packages() above may have failed without affecting job status
         echo '::endgroup::'
       shell: bash
 
