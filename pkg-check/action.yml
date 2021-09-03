@@ -115,14 +115,15 @@ runs:
         echo ''
         echo R_LIBS=$BLDIR/Rlib R CMD check ${{ inputs.check-flags }} $XTRA $SRCTAR
         cd $BLDIR
-        R_LIBS=$BLDIR/Rlib R CMD check ${{ inputs.check-flags }} $XTRA $SRCTAR
-        find $PACKAGE.Rcheck -name 00check.log -o -name 00install.out -o -name "*.fail" | \
-          while read F ; do
-            if [ -r $F ] ; then
-              echo " -------------- $F --------------- "
-              cat $F
-              echo " --------------------------------- "
-            fi
-          done
+        if [ ! R_LIBS=$BLDIR/Rlib R CMD check ${{ inputs.check-flags }} $XTRA $SRCTAR ] ; then
+          find $PACKAGE.Rcheck -name 00check.log -o -name 00install.out -o -name "*.fail" | \
+            while read F ; do
+              if [ -r $F ] ; then
+                echo " -------------- $F --------------- "
+                cat $F
+               echo " --------------------------------- "
+              fi
+            done
+        fi
         echo '::endgroup::'
       shell: bash
