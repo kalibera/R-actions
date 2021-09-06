@@ -89,8 +89,9 @@ runs:
         if [ "${{ runner.os }}" = Linux ]; then
           PKGTYPE=source;
         else
-          # BRPATH=$BLDIR/repo`Rscript -e 'cat(contrib.url(\"\",.Platform$pkgType))'`
-          # BRPATH=$BLDIR/repo`Rscript -e 'cat(contrib.url('\"\"',.Platform$pkgType))'`
+          # This style of quoting does not work on windows-2022 runner:
+          #   BRPATH=$BLDIR/repo`Rscript -e 'cat(contrib.url("",.Platform$pkgType))'`
+          # The following one does (and it still works on ubuntu-20.04):
           BRPATH=$BLDIR/repo`Rscript -e 'cat(contrib.url('\'\'',.Platform$pkgType))'`
           echo Binary install - target repo is $BRPATH
           mkdir -p $BRPATH
