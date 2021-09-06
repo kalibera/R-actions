@@ -91,7 +91,7 @@ runs:
         else
           # BRPATH=$BLDIR/repo`Rscript -e 'cat(contrib.url(\"\",.Platform$pkgType))'`
           # BRPATH=$BLDIR/repo`Rscript -e 'cat(contrib.url('\"\"',.Platform$pkgType))'`
-          BRPATH=$BLDIR/repo`Rscript -e 'cat(contrib.url(\'\',.Platform$pkgType))'`
+          BRPATH=$BLDIR/repo`Rscript -e 'cat(contrib.url('\'\'',.Platform$pkgType))'`
           echo Binary install - target repo is $BRPATH
           mkdir -p $BRPATH
           echo '' > $BRPATH/PACKAGES
