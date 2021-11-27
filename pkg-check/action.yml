@@ -134,7 +134,8 @@ runs:
         echo '/usr/bin has'
         ls -l /usr/bin
         echo 'Updating PATH...'
-        export PATH=\"`echo $PATH | sed -e 's/^\/mingw64\/bin:\/usr\/bin://g'`":/mingw64/bin:/usr/bin"\"
+        #export PATH=\"`echo $PATH | sed -e 's/^\/mingw64\/bin:\/usr\/bin://g'`":/mingw64/bin:/usr/bin"\"
+        export PATH=\""/c/msys64/usr/bin:"`echo $PATH | sed -e 's/^\/mingw64\/bin:\/usr\/bin://g'`\"
         echo 'Updated PATH is'
         echo $PATH
         echo 'gcc is'
