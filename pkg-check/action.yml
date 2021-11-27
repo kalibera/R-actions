@@ -117,9 +117,12 @@ runs:
         echo "::group::R CMD check"
         if ! pdflatex --version | head -n1; then echo "::warning ::pdflatex not found, using --no-manual"; XTRA=--no-manual; fi
         echo ''
-        echo 'PATH is $PATH'
-        echo 'gcc is `which gcc`'
-        echo 'ld is `which ld`'
+        echo 'PATH is'
+        echo $PATH
+        echo 'gcc is'
+        which gxx
+        echo 'ld is'
+        which ld
         echo R_LIBS=$BLDIR/Rlib R CMD check ${{ inputs.check-flags }} $XTRA $SRCTAR
         cd $BLDIR
         if ! R_LIBS=$BLDIR/Rlib R CMD check ${{ inputs.check-flags }} $XTRA $SRCTAR ; then
