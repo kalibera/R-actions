@@ -117,6 +117,15 @@ runs:
         echo "::group::R CMD check"
         if ! pdflatex --version | head -n1; then echo "::warning ::pdflatex not found, using --no-manual"; XTRA=--no-manual; fi
         echo ''
+        echo 'Environment variables:'
+        set
+        echo 'Make version:'
+        make --version
+        echo 'Msys2?'
+        ls /c
+        ls /c/msys64
+        ls /c/msys64/bin
+        ls /c/msys64/usr/bin
         echo R_LIBS=$BLDIR/Rlib R CMD check ${{ inputs.check-flags }} $XTRA $SRCTAR
         cd $BLDIR
         if ! R_LIBS=$BLDIR/Rlib R CMD check ${{ inputs.check-flags }} $XTRA $SRCTAR ; then
