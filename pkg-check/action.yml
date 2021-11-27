@@ -132,7 +132,7 @@ runs:
         echo '/usr/bin has'
         ls -l /usr/bin
         echo 'Updating PATH...'
-        export PATH=\"`echo $PATH | sed -e 's/^\/mingw64\/bin://g'`\"
+        export PATH=\"`echo $PATH | sed -e 's/^\/mingw64\/bin:\/usr\/bin://g'`":/mingw64/bin:/usr/bin"\"
         echo 'Updated PATH is'
         echo $PATH
         echo R_LIBS=$BLDIR/Rlib R CMD check ${{ inputs.check-flags }} $XTRA $SRCTAR
