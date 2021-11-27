@@ -122,9 +122,6 @@ runs:
         echo 'Make version:'
         make --version
         echo 'Msys2?'
-        ls /c
-        ls /c/msys64
-        ls /c/msys64/bin
         ls /c/msys64/usr/bin
         echo R_LIBS=$BLDIR/Rlib R CMD check ${{ inputs.check-flags }} $XTRA $SRCTAR
         cd $BLDIR
