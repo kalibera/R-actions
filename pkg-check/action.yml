@@ -127,6 +127,8 @@ runs:
         which R
         echo 'as is'
         which as
+        echo 'make is'
+        which make
         echo '/mingw64/bin has'
         ls -l /mingw64/bin
         echo '/usr/bin has'
@@ -135,6 +137,16 @@ runs:
         export PATH=\"`echo $PATH | sed -e 's/^\/mingw64\/bin:\/usr\/bin://g'`":/mingw64/bin:/usr/bin"\"
         echo 'Updated PATH is'
         echo $PATH
+        echo 'gcc is'
+        which gcc
+        echo 'ld is'
+        which ld
+        echo 'R is'
+        which R
+        echo 'as is'
+        which as
+        echo 'make is'
+        which make
         echo R_LIBS=$BLDIR/Rlib R CMD check ${{ inputs.check-flags }} $XTRA $SRCTAR
         cd $BLDIR
         if ! R_LIBS=$BLDIR/Rlib R CMD check ${{ inputs.check-flags }} $XTRA $SRCTAR ; then
