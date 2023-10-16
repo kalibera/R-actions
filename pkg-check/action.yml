@@ -127,10 +127,8 @@ runs:
         Rscript -e 'system("pkg-config --libs libtiff-4")'
         Rscript -e 'system("uname -a")'
         echo "Testing from make..."
-        echo -e 'all:\n\techo $(shell pkg-config --version) $(shell pkg-config --libs libtiff-4) $(shell uname -a)\n\tenv' > test.mk
+        echo -e 'SHELL=/usr/bin/bash\nall:\n\techo $(shell pkg-config --version) $(shell pkg-config --libs libtiff-4) $(shell uname -a)\n\tenv' > test.mk
         make -f test.mk
-        echo "Testing with SHELL"
-        SHELL=/usr/bin/bash make -f test.mk
         echo "Done testing from make.."
         make --version
         which make
