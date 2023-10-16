@@ -117,6 +117,10 @@ runs:
         echo "::group::R CMD check"
         if ! pdflatex --version | head -n1; then echo "::warning ::pdflatex not found, using --no-manual"; XTRA=--no-manual; fi
         echo ''
+        echo 'pkg-config is found at this location: '
+        echo `which pkg-config`
+        pkg-config --version
+        pkg-config --libs libtiff-4
         echo R_LIBS=$BLDIR/Rlib R CMD check ${{ inputs.check-flags }} $XTRA $SRCTAR
         cd $BLDIR
         if ! R_LIBS=$BLDIR/Rlib R CMD check ${{ inputs.check-flags }} $XTRA $SRCTAR ; then
