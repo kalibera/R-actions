@@ -124,6 +124,7 @@ runs:
         R_LIBS=$BLDIR/Rlib Rscript -e 'Sys.which("pkg-config")'
         echo 'PATH is'
         echo $PATH
+        Rscript -e 'system("pkg-config --libs libtiff-4")'
         R_LIBS=$BLDIR/Rlib Rscript -e 'Sys.getenv("PATH")'
         echo R_LIBS=$BLDIR/Rlib R CMD check ${{ inputs.check-flags }} $XTRA $SRCTAR
         cd $BLDIR
