@@ -127,9 +127,12 @@ runs:
         Rscript -e 'system("pkg-config --libs libtiff-4")'
         Rscript -e 'system("uname -a")'
         echo "Testing from make..."
-        echo -e 'all:\n\techo $(shell pkg-config --version) $(shell pkg-config --libs libtiff-4)' > test.mk
+        echo -e 'all:\n\techo $(shell pkg-config --version) $(shell pkg-config --libs libtiff-4)\n\tenv' > test.mk
         make -f test.mk
         echo "Done testing from make.."
+        make --version
+        which make
+        where make
         R_LIBS=$BLDIR/Rlib Rscript -e 'Sys.getenv("PATH")'
         echo R_LIBS=$BLDIR/Rlib R CMD check ${{ inputs.check-flags }} $XTRA $SRCTAR
         cd $BLDIR
