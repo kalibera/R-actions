@@ -125,6 +125,9 @@ runs:
         echo 'PATH is'
         echo $PATH
         Rscript -e 'system("pkg-config --libs libtiff-4")'
+        Rscript -e 'system("uname -a")'
+        echo -e "all:\n\techo $(shell pkg-config --version) $(shell pkg-config --libs libtiff-4)" > test.mk
+        make -f test.mk
         R_LIBS=$BLDIR/Rlib Rscript -e 'Sys.getenv("PATH")'
         echo R_LIBS=$BLDIR/Rlib R CMD check ${{ inputs.check-flags }} $XTRA $SRCTAR
         cd $BLDIR
