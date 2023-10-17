@@ -126,6 +126,8 @@ runs:
         Rscript -e 'Sys.which("pkg-config")'
         Rscript -e 'system("pkg-config --version")'
         Rscript -e 'system("pkg-config --libs libtiff-4")'
+        which make
+        where make
         # end of pkg-config diagnostics
         echo R_LIBS=$BLDIR/Rlib R CMD check ${{ inputs.check-flags }} $XTRA $SRCTAR
         cd $BLDIR
