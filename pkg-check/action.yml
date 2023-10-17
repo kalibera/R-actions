@@ -127,8 +127,11 @@ runs:
         Rscript -e 'system("pkg-config --version")'
         Rscript -e 'system("pkg-config --libs libtiff-4")'
         Rscript -e 'cat("X"); system("pkg-config --version"); cat("X")'
+        Rscript -e 'cat("X"); system("pkg-config --version 2>/dev/null"); cat("X")'
         which make
         where make
+        echo -e 'all:\n\techo X$(shell pkg-config --version)X  X$(shell pkg-config --version 2>/dev/null)X X$(shell pkg-config --libs libtiff-4)'X > test.mk
+        make -f test.mk
         # end of pkg-config diagnostics
         echo R_LIBS=$BLDIR/Rlib R CMD check ${{ inputs.check-flags }} $XTRA $SRCTAR
         cd $BLDIR
