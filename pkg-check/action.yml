@@ -126,6 +126,7 @@ runs:
         Rscript -e 'Sys.which("pkg-config")'
         Rscript -e 'system("pkg-config --version")'
         Rscript -e 'system("pkg-config --libs libtiff-4")'
+        Rscript -e 'cat("X"); system("pkg-config --version"); cat("X")'
         which make
         where make
         # end of pkg-config diagnostics
