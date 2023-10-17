@@ -121,6 +121,9 @@ runs:
         echo `which pkg-config`
         pkg-config --version
         pkg-config --libs libtiff-4
+        ls -l $TDIR/bin/pkg-config*
+        cat $TDIR/bin/pkg-config.bat
+        echo $PATH
         Rscript -e 'Sys.which("pkg-config")'
         Rscript -e 'Sys.which("pkg-config --version")'
         echo R_LIBS=$BLDIR/Rlib R CMD check ${{ inputs.check-flags }} $XTRA $SRCTAR
