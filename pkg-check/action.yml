@@ -121,24 +121,8 @@ runs:
         echo `which pkg-config`
         pkg-config --version
         pkg-config --libs libtiff-4
-        R_LIBS=$BLDIR/Rlib Rscript -e 'Sys.which("pkg-config")'
-        echo 'PATH is'
-        echo $PATH
-        Rscript -e 'system("pkg-config --libs libtiff-4")'
-        Rscript -e 'system("uname -a")'
-        echo "Testing from make..."
-        echo -e 'all:\n\techo $(shell pkg-config --version) $(shell pkg-config --libs libtiff-4) $(shell uname -a)\n\tenv' > test.mk
-        make -f test.mk
-        echo "Done testing from make (`which make`).."
-        echo "Current shell:"
-        echo $SHELL
-        ls -l /usr/bin
-        make --version        
-        which make
-        where make
-        ls -l /c/msys64/
-        ls -l /c/msys64/usr/bin
-        R_LIBS=$BLDIR/Rlib Rscript -e 'Sys.getenv("PATH")'
+        Rscript -e 'Sys.which("pkg-config")'
+        Rscript -e 'Sys.which("pkg-config --version")'
         echo R_LIBS=$BLDIR/Rlib R CMD check ${{ inputs.check-flags }} $XTRA $SRCTAR
         cd $BLDIR
         if ! R_LIBS=$BLDIR/Rlib R CMD check ${{ inputs.check-flags }} $XTRA $SRCTAR ; then
