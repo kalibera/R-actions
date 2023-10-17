@@ -126,7 +126,8 @@ runs:
         cat `which pkg-config`.bat
         echo $PATH
         Rscript -e 'Sys.which("pkg-config")'
-        Rscript -e 'Sys.which("pkg-config --version")'
+        Rscript -e 'system("pkg-config --version")'
+        Rscript -e 'Sys.getenv("PATH")'
         echo R_LIBS=$BLDIR/Rlib R CMD check ${{ inputs.check-flags }} $XTRA $SRCTAR
         cd $BLDIR
         if ! R_LIBS=$BLDIR/Rlib R CMD check ${{ inputs.check-flags }} $XTRA $SRCTAR ; then
