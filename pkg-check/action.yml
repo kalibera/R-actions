@@ -128,12 +128,11 @@ runs:
         Rscript -e 'system("uname -a")'
         echo "Testing from make..."
         echo -e 'all:\n\techo $(shell pkg-config --version) $(shell pkg-config --libs libtiff-4) $(shell uname -a)\n\tenv' > test.mk
-        /usr/bin/make -f test.mk
-        echo "Done testing from make (/usr/bin).."
+        make -f test.mk
+        echo "Done testing from make (`which make`).."
         /c/msys64/usr/bin/make -f test.mk
         echo "Done testing from make (/c/msys64/usr/bin).."
         make --version        
-        /usr/bin/make --version        
         /c/msys64/usr/bin/make --version
         which make
         where make
