@@ -117,9 +117,9 @@ runs:
         echo "::group::R CMD check"
         if ! pdflatex --version | head -n1; then echo "::warning ::pdflatex not found, using --no-manual"; XTRA=--no-manual; fi
         echo ''
-        echo R_LIBS=$BLDIR/Rlib R CMD check ${{ inputs.check-flags }} $XTRA $SRCTAR
+        echo R_LIBS=$BLDIR/Rlib _R_INSTALL_TIME_PATCHES_=no R CMD check ${{ inputs.check-flags }} $XTRA $SRCTAR
         cd $BLDIR
-        if ! R_LIBS=$BLDIR/Rlib R CMD check ${{ inputs.check-flags }} $XTRA $SRCTAR ; then
+        if ! R_LIBS=$BLDIR/Rlib _R_INSTALL_TIME_PATCHES_=no R CMD check ${{ inputs.check-flags }} $XTRA $SRCTAR ; then
           find $PACKAGE.Rcheck -name 00check.log -o -name 00install.out -o -name "*.fail" | \
             while read F ; do
               if [ -r $F ] ; then
